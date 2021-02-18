@@ -41,6 +41,19 @@ router.post("/uploadfiles", (req, res) => {
     })
 })
 
+router.get("/getVideos", (req, res) => {
+    // 비디오를 DB에서 가져와서 클라이언트에 보낸다.
+    Video.find()        // 비디오 콜렉션 안에 있는 모든 비디오.
+    .populate('writer')     // Video 모델 안의 ref(user)까지 다 가져옴
+    .exec((err, videos) => {
+        if(err) return res.status(400).send(err);
+        res.status(200).json({
+            success : true,
+            videos
+        })
+    })
+})
+
 router.post("/uploadVideo", (req, res) => {
     // 비디오 정보들을 db에 저장한다.
     const video = new Video(req.body)     // 클라이언트에서 variable로 보낸 데이터 전부가 request.body
