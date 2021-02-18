@@ -67,7 +67,19 @@ router.post("/uploadVideo", (req, res) => {
             success : true
         })
     })
+})
 
+router.post("/getVideoDetail", (req, res) => {
+    // videoId를 가지고 DB에서 비디오 정보를 가져온다.
+    Video.findOne({"_id" : req.body.videoId})
+    .populate('wtiter')
+    .exec((err, videoDetail) => {
+        if(err) return res.status(400).send(err)
+        return res.status(200).json({
+            success : true,
+            videoDetail
+        })
+    })
 })
 
 router.post("/thumbnail", (req, res) => {
