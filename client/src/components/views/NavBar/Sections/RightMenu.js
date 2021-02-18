@@ -9,8 +9,11 @@ import { useSelector } from "react-redux";
 function RightMenu(props) {
   const user = useSelector(state => state.user)
 
-  const logoutHandler = () => {
+  const logoutHandler = (e) => {
+    console.log("ASAFSDFA")
+    e.preventDefault()
     axios.get(`${USER_SERVER}/logout`).then(response => {
+      console.log(response.data)
       if (response.status === 200) {
         props.history.push("/login");
       } else {
@@ -39,7 +42,7 @@ function RightMenu(props) {
           <a href="/video/upload">Upload</a>
         </Menu.Item>
         <Menu.Item key="logout">
-          <a href={logoutHandler}>Logout</a>
+          <a href='' onClick={logoutHandler}>Logout</a>
         </Menu.Item>
       </Menu>
     )
