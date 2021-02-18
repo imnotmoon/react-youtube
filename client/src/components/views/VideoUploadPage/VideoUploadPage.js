@@ -91,7 +91,7 @@ export default function VideoUploadPage(props) {
 
         const variable = {
             writer : user.userData._id,      // Redux의 userData.id에서 가져온다
-            title : Title,
+            title : VideoTitle,
             description : Description,
             privacy : Private,
             filePath : FilePath,
