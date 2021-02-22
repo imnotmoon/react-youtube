@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Row, Col, List, Avatar } from 'antd'
 import Axios from 'axios';
 import SideVideo from './Section/SideVideo';
+import Subscribe from './Section/Subscribe';
 
 function VideoDetailPage(props) {
 
@@ -26,7 +27,7 @@ function VideoDetailPage(props) {
                 alert('비디오 정보를 가져오는데 실패했습니다.')
             }
         })
-    }, [])
+    })
 
 
     if(VideoDetail.writer) {
@@ -43,7 +44,7 @@ function VideoDetailPage(props) {
 
                         {/* info */}
                         <List.Item
-                            actions
+                            actions={[<Subscribe userTo={VideoDetail.writer} />]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={VideoDetail.writer.image} /> }

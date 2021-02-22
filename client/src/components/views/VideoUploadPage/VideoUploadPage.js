@@ -50,7 +50,7 @@ export default function VideoUploadPage(props) {
 
     const onDrop = (files) => {
         // header에 content-type 안써주면 파일을 보낼때 오류가 난다.
-        let formData = new FormData;
+        let formData = new FormData();
         const config = {
             header: {'content-type' : 'multipart/form-data'}
         }
