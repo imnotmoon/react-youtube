@@ -27,7 +27,7 @@ function VideoDetailPage(props) {
                 alert('비디오 정보를 가져오는데 실패했습니다.')
             }
         })
-    })
+    }, [])
 
 
     if(VideoDetail.writer) {
@@ -44,7 +44,7 @@ function VideoDetailPage(props) {
 
                         {/* info */}
                         <List.Item
-                            actions={[<Subscribe userTo={VideoDetail.writer} />]}
+                            actions={[<Subscribe userTo={VideoDetail.writer._id} userFrom={ localStorage.getItem('userId') } />]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={VideoDetail.writer.image} /> }

@@ -31,4 +31,23 @@ router.post("/subscribed", (req, res) => {
     })
 })
 
+router.post("/unSubscribe", (req, res) => {
+    
+    Subscriber.findOneAndDelete({ userTo:req.body.userTo, userFrom:req.body.userFrom })
+        .exec((err, doc) => {
+            if(err) return res.status(400).json({success: false, err})
+            return res.status(200).json({success: true, doc})
+        })
+})
+
+router.post("/subscribe", (req, res) => {
+    
+    // 일단 인스턴스를 만들어야함
+    const subscribe = new Subscriber(req.body)
+    subscribe.save((err, doc) => {
+        if(err) return res.status(400).json({success: false, err})
+        return res.status(200).json({success: true, doc})
+    })
+})
+
 module.exports = router
