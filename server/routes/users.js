@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
-
+const { Subscriber } = require('../models/Subscriber')
 const { auth } = require("../middleware/auth");
 
 //=================================
